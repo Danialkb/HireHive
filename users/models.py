@@ -1,21 +1,26 @@
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
 
 from users import choices
 
 
 class UserManager(BaseUserManager):
     @staticmethod
-    def _validate_user(email: str):
+    def _validate_user(email: str, phone_number: str):
         if not email:
             raise ValueError('Users must have an email address')
 
-    def create_user(self, email: str, password:str = None):
-        self._validate_user(email=email)
+        if not phone_number:
+            raise ValueError('Users must have an phone number')
+
+    def create_user(self, email: str, phone_number: str, password:str = None):
+        self._validate_user(email=email, phone_number=phone_number)
 
         user = self.model(
             email=self.normalize_email(email),
+            phone_number=phone_number,
             is_active=True
         )
         user.set_unusable_password()
@@ -23,12 +28,12 @@ class UserManager(BaseUserManager):
 
         return user
 
-    def create_superuser(self, email: str, password: str = None, username: str = None):
-        self._validate_user(email=email)
+    def create_superuser(self, email: str, phone_number: str, password: str = None):
+        self._validate_user(email=email, phone_number=phone_number)
 
         user = self.model(
             email=self.normalize_email(email),
-            username=username,
+            phone_number=phone_number,
             is_active=True,
             is_staff=True,
             is_superuser=True
@@ -42,6 +47,7 @@ class UserManager(BaseUserManager):
 class User(AbstractUser):
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=50, blank=True, null=True)
+    phone_number = PhoneNumberField(unique=True, default='+77777777777')
     user_type = models.CharField(
         max_length=10,
         choices=choices.UserTypeChoices.choices,
@@ -52,7 +58,7 @@ class User(AbstractUser):
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
 
-    REQUIRED_FIELDS = ['username']
+    REQUIRED_FIELDS = ['phone_number']
 
     objects = UserManager()
 
