@@ -34,6 +34,7 @@ class Applicant(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     email = models.EmailField()
+    covering_letter = models.TextField(default='')
     resume = models.FileField(upload_to='applicant_resumes/', blank=True, null=True)
 
     def __str__(self):

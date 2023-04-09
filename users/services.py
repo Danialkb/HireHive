@@ -35,8 +35,6 @@ class UserServicesV1:
 
         self._send_confirmation_letter_on_email(user=user)
 
-
-
     def create_token(self, data: OrderedDict):
         user = self.user_repos.get_user(data=data)
         data['email'] = str(user.email)

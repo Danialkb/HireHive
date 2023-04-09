@@ -30,7 +30,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,11 +44,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'users',
+    'job_board',
+    'companies',
 
     'rest_framework',
     'rest_framework_simplejwt',
     'debug_toolbar',
     'drf_yasg',
+    'corsheaders',
 
 ]
 
@@ -62,7 +65,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = ['http://localhost:4200', ]
 
 ROOT_URLCONF = 'src.urls'
 
