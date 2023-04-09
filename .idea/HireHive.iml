@@ -16,6 +16,14 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/venv" />
       <excludeFolder url="file://$MODULE_DIR$/.idea/dataSources" />
+      <excludeFolder url="file://$MODULE_DIR$/front/front-project/.vscode" />
+      <excludeFolder url="file://$MODULE_DIR$/front/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/front/front-project/node_modules/encoding/node_modules/iconv-lite/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/front/front-project/node_modules/is-what/.vscode" />
+      <excludeFolder url="file://$MODULE_DIR$/front/front-project/node_modules/needle/node_modules/iconv-lite/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/front/front-project/node_modules/source-map-loader/node_modules/iconv-lite/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/front/front-project/node_modules/typed-assert/.vscode" />
+      <excludeFolder url="file://$MODULE_DIR$/front/front-project/node_modules" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.10" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
