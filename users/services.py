@@ -1,12 +1,13 @@
 import random
 import uuid
 from typing import Protocol, OrderedDict
+
+from django.contrib.auth.hashers import check_password
 from django.core.cache import cache
 from src import settings
 from . import repos
 from .models import User
 from templated_email import send_templated_mail
-from django.core.mail import send_mail
 from rest_framework_simplejwt import tokens
 
 
@@ -29,17 +30,31 @@ class UserServicesV1:
     def verify_user(self, data: OrderedDict):
         user_data = cache.get(data['session_id'])
         user = self.user_repos.create_user(data={
+            'first_name': user_data['first_name'],
+            'last_name': user_data['last_name'],
             'email': user_data['email'],
             'phone_number': user_data['phone_number'],
+            'password': user_data['password']
         })
 
         self._send_confirmation_letter_on_email(user=user)
 
     def create_token(self, data: OrderedDict):
-        user = self.user_repos.get_user(data=data)
-        data['email'] = str(user.email)
+        user = self.user_repos.get_user(data={'email': data['email']})
 
-        return self._verify_email(data=data)
+        if not user:
+            return {"detail": 'Invalid username or password'}
+
+        if check_password(password=data['password'], encoded=user.password):
+            access = tokens.AccessToken.for_user(user)
+            refresh = tokens.RefreshToken.for_user(user)
+            # print(tokens.AccessToken.)
+            return {
+                'access': str(access),
+                'refresh': str(refresh),
+            }
+        else:
+            return {"detail": 'Invalid username or password'}
 
     def verify_token(self, data: OrderedDict) -> dict:
         user_data = cache.get(data['session_id'])
@@ -48,7 +63,7 @@ class UserServicesV1:
 
         access = tokens.AccessToken.for_user(user)
         refresh = tokens.RefreshToken.for_user(user)
-
+        print(tokens.AccessToken.get(access))
         return {
             'access': str(access),
             'refresh': str(refresh),
@@ -59,28 +74,33 @@ class UserServicesV1:
         session_id = self._generate_session_id()
         cache.set(session_id, {**data, 'code': code}, timeout=300)
 
-        self._send_letter_on_email(email=data['email'], code=code)
+        self._send_letter_on_email(name=data['first_name'], surname=data['last_name'] ,email=data['email'], code=code)
 
         return session_id
 
     @staticmethod
-    def _send_letter_on_email(email: str, code: str):
-        send_mail(
-            subject=f'Welcome to HireHive!',
-            message=f'Your code is {code}',
+    def _send_letter_on_email(name: str, surname: str, email: str, code: str):
+        send_templated_mail(
+            template_name='verify',
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=[email],
-            fail_silently=False
+            context={
+                'code': code,
+                'name': name,
+                'surname': surname,
+            }
         )
 
     @staticmethod
     def _send_confirmation_letter_on_email(user: User):
-        send_mail(
-            subject=f'You succesfully registered on HireHive!',
-            message='On our site you can familiarize yourself with those interested in you',
+        send_templated_mail(
+            template_name='welcome',
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=[user.email],
-            fail_silently=False
+            context={
+                'name': user.first_name,
+                'surname': user.last_name,
+            }
         )
 
     @staticmethod

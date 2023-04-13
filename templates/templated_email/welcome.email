@@ -1,0 +1,53 @@
+{% block subject %}Successfully registered!{% endblock %}
+
+
+{% block plain %}
+  {% block html %}
+      <style>
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding: 0;
+        background-color: #f6f6f6;
+      }
+      h2 {
+        color: #333;
+        font-size: 28px;
+        font-weight: 700;
+        text-align: center;
+        margin-top: 40px;
+        margin-bottom: 20px;
+      }
+      p {
+        color: #666;
+        font-size: 18px;
+        font-weight: 400;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      strong {
+        color: #008080;
+        font-weight: 700;
+      }
+    </style>
+      <h2>You have succesfully registered on HireHive!</h2>
+     <br>
+     <br>
+     <p> Hi {{name}}<br>
+       <br>
+       <br>
+       Welcome to HireHive, a community of 17 million+ professionals and job-seekers in 100+ countries. Our goal is to help you advance your career, make your professional story shine, and get noticed by hiring managers! Now, you can easily create an engaging, convincing resume or cover letter using our expertly-designed templates. All of this — with no wasted time, no formatting, no guesswork, or writer block!<br>
+       <br>
+       Our unique resume builder includes:<br>
+           <strong>-</strong> An accurate spell-checker to avoid typos and mistakes<br>
+           <strong>-</strong> Profession-based skill suggestions<br>
+           <strong>-</strong> Resume sharing features to track views and statistics<br>
+           <strong>-</strong> A job-tracker board (never miss a job listing) and more!<br>
+          <br>
+       We also provide a ton of free resources for your professional growth and convenience:</p>
+  {% endblock %}
+{% endblock %}

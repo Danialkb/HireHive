@@ -1,0 +1,54 @@
+{% block subject %}Welcome to our website!!!{% endblock %}
+
+
+{% block plain %}
+  {% block html %}
+       <style>
+          body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            background-color: #f6f6f6;
+          }
+          h2 {
+            color: #333;
+            font-size: 28px;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+          }
+          h3 {
+            color: #333;
+            font-size: 20px;
+            font-weight: 600;
+            margin-top: 40px;
+            margin-bottom: 20px;
+          }
+          h1 {
+            color: #008080;
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+          }
+          h4 {
+            color: #666;
+            font-size: 16px;
+            font-weight: 400;
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 40px;
+          }
+        </style>
+      <h2>Thank you for joining HireHive!</h2>
+
+     <h3>Dear {{name}} {{surname}}, register your account by entering this code</h3><br>
+    <h1>{{code}}</h1>
+       <br>
+    <h4>Have fun in searching a job, and do not hesitate to contact us with your feedback.</h4>
+  {% endblock %}
+{% endblock %}

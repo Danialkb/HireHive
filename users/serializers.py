@@ -6,7 +6,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.User
-        fields = ('email', 'phone_number')
+        fields = ('first_name', 'last_name', 'email', 'phone_number', 'password')
 
 
 class VerifyUserSerializer(serializers.Serializer):
@@ -16,3 +16,4 @@ class VerifyUserSerializer(serializers.Serializer):
 
 class CreateTokenSerializer(serializers.Serializer):
     email = serializers.EmailField()
+    password = serializers.CharField(max_length=128)

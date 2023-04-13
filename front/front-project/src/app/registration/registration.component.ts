@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {HttpClient} from "@angular/common/http";
+import {UserService} from "../user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-registration',
@@ -11,19 +12,24 @@ export class RegistrationComponent {
   form: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient,
+    private userServices: UserService,
+    private router: Router,
   ) {
     this.form = this.formBuilder.group({
-      name: '',
-      surname: '',
+      first_name: '',
+      last_name: '',
       email: '',
-      code: '',
+      phone_number: '',
       password: '',
     });
   }
 
   submit() {
-
+    this.userServices.createUser(this.form).subscribe(response => {
+      // @ts-ignore
+      this.userServices.setSessionId(response.session_id)
+      this.router.navigate(['/verify-registration'])
+    });
   }
 
 }

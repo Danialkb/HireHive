@@ -15,15 +15,17 @@ class UserManager(BaseUserManager):
         if not phone_number:
             raise ValueError('Users must have an phone number')
 
-    def create_user(self, email: str, phone_number: str, password:str = None):
+    def create_user(self, first_name: str, last_name: str, password: str, email: str, phone_number: str):
         self._validate_user(email=email, phone_number=phone_number)
 
         user = self.model(
+            first_name=first_name,
+            last_name=last_name,
             email=self.normalize_email(email),
             phone_number=phone_number,
             is_active=True
         )
-        user.set_unusable_password()
+        user.set_password(password)
         user.save()
 
         return user

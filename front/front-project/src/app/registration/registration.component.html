@@ -1,18 +1,21 @@
 <form [formGroup]="form" (submit)="submit()">
-  <label for="name">Name:</label>
-  <input type="name" id="name" name="name" required>
+  <label for="first_name">Name:</label>
+  <input formControlName="first_name" type="text" id="first_name" name="first_name" required>
 
-  <label for="surname">Surname:</label>
-  <input type="surname" id="surname" name="surname" required>
+  <label for="last_name">Surname:</label>
+  <input formControlName="last_name" type="text" id="last_name" name="last_name" required>
 
   <label for="email">Email:</label>
-  <input type="email" id="email" name="email" required>
+  <input formControlName="email" type="email" id="email" name="email" required>
 
-  <label for="code">Code from Email:</label>
-  <input type="text" id="code" name="code" required>
+  <label for="phone_number">Phone number:</label>
+  <input formControlName="phone_number" type="text" id="phone_number" name="phone_number" required>
+
+<!--  <label for="code">Code from Email:</label>-->
+<!--  <input type="text" id="code" name="code" required>-->
 
   <label for="password">Password:</label>
-  <input type="password" id="password" name="password" required>
+  <input formControlName="password" type="password" id="password" name="password" required>
 
-  <input type="submit" value="Submit">
+  <button type="submit">Submit</button>
 </form>

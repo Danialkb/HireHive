@@ -1,13 +1,16 @@
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ViewSet
 from . import services
 from . import serializers
 from rest_framework.response import Response
 from rest_framework import status
 from drf_yasg.utils import swagger_auto_schema
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
 class UserViewSet(ViewSet):
     user_services: services.UserServicesInterface = services.UserServicesV1()
+    authentication_classes = [JWTAuthentication, ]
 
     @swagger_auto_schema(
         request_body=serializers.CreateUserSerializer(),
@@ -34,12 +37,14 @@ class UserViewSet(ViewSet):
 
     @swagger_auto_schema(request_body=serializers.CreateTokenSerializer)
     def create_token(self, request, *args, **kwargs):
+        print(request.user)
         serializer = serializers.CreateTokenSerializer(data=request.data)
+        print(request.data)
         serializer.is_valid(raise_exception=True)
 
-        session_id = self.user_services.create_token(data=serializer.data)
+        tokens = self.user_services.create_token(data=serializer.data)
 
-        return Response({'session_id': session_id})
+        return Response(tokens)
 
     @swagger_auto_schema(request_body=serializers.VerifyUserSerializer)
     def verify_token(self, request, *args, **kwargs):
