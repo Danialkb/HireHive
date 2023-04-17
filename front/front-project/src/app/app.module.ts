@@ -14,6 +14,8 @@ import { VerifyRegistrationComponent } from './verify-registration/verify-regist
 import { LoginComponent } from './login/login.component';
 import {AuthInterceptor} from "./interceptor/auth.interceptor";
 import { CompanyRegisterComponent } from './company-register/company-register.component';
+import { CompanyDetailsComponent } from './company-details/company-details.component';
+import { JobPostDetailsComponent } from './job-post-details/job-post-details.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { CompanyRegisterComponent } from './company-register/company-register.co
     RegistrationComponent,
     VerifyRegistrationComponent,
     LoginComponent,
-    CompanyRegisterComponent
+    CompanyRegisterComponent,
+    CompanyDetailsComponent,
+    JobPostDetailsComponent
   ],
   imports: [
     BrowserModule,
