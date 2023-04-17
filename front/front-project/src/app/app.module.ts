@@ -16,6 +16,8 @@ import {AuthInterceptor} from "./interceptor/auth.interceptor";
 import { CompanyRegisterComponent } from './company-register/company-register.component';
 import { CompanyDetailsComponent } from './company-details/company-details.component';
 import { JobPostDetailsComponent } from './job-post-details/job-post-details.component';
+import { HomeComponent } from './home/home.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { JobPostDetailsComponent } from './job-post-details/job-post-details.com
     LoginComponent,
     CompanyRegisterComponent,
     CompanyDetailsComponent,
-    JobPostDetailsComponent
+    JobPostDetailsComponent,
+    HomeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
