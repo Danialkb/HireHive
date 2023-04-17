@@ -11,11 +11,19 @@
   <label for="phone_number">Phone number:</label>
   <input formControlName="phone_number" type="text" id="phone_number" name="phone_number" required>
 
-<!--  <label for="code">Code from Email:</label>-->
-<!--  <input type="text" id="code" name="code" required>-->
-
   <label for="password">Password:</label>
   <input formControlName="password" type="password" id="password" name="password" required>
+
+  <div>
+    <label for="employer">
+      <input type="radio" id="employer" name="user_type" value="employer" formControlName="user_type" required>
+      Employer
+    </label>
+    <label for="employee">
+      <input type="radio" id="employee" name="user_type" value="employee" formControlName="user_type" required>
+      Employee
+    </label>
+  </div>
 
   <button type="submit">Submit</button>
 </form>

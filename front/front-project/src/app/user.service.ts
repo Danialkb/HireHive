@@ -26,4 +26,8 @@ export class UserService {
     return this.http.post(`${this.URL}/users/token/`, form.getRawValue(), {withCredentials: true});
   }
 
+  refreshToken(refresh: string) {
+    return this.http.post(`${this.URL}/users/token/refresh/`, {'refresh': refresh}, {withCredentials: true})
+  }
+
 }

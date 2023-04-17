@@ -3,22 +3,35 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor, HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {catchError, Observable, switchMap} from 'rxjs';
+import {UserService} from "../user.service";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  static accessToken: string = '';
-  // static session_id: string = '';
-  constructor() {}
+  constructor(private userService: UserService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const reqClone = request.clone({
-      setHeaders: {
-        Authorization: `Bearer ${AuthInterceptor.accessToken}`
-      }
-    });
+    const token = localStorage.getItem('access_token');
+    if (token){
+      const newReq = request.clone({
+        headers: request.headers.set('Authorization', `Bearer ${token}`),
+      })
+      // @ts-ignore
+      return next.handle(newReq).pipe(catchError((err: HttpErrorResponse) => {
+        if(err.status === 401) {
+          // @ts-ignore
+          return this.userService.refreshToken(localStorage.getItem('refresh_token')).pipe(
+            switchMap((res: any) => {
+              localStorage.setItem('access_token', res.access);
+              return next.handle(newReq);
+            })
+          )
+        }
+      }));
+    }
+
     return next.handle(request);
   }
 }

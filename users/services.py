@@ -34,7 +34,8 @@ class UserServicesV1:
             'last_name': user_data['last_name'],
             'email': user_data['email'],
             'phone_number': user_data['phone_number'],
-            'password': user_data['password']
+            'password': user_data['password'],
+            'user_type': user_data['user_type']
         })
 
         self._send_confirmation_letter_on_email(user=user)

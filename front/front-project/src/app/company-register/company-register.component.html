@@ -1,0 +1,19 @@
+<form [formGroup]="form">
+  <label for="name">Name:</label>
+  <input formControlName="name" id="name" name="name" type="text" required>
+
+  <label for="location">Location:</label>
+  <input formControlName="location" id="location" name="location" type="text" required>
+
+  <label for="description">Description:</label>
+  <input formControlName="description" id="description" name="description" type="text" required>
+
+  <label for="website">Website:</label>
+  <input formControlName="website" id="website" name="website" type="url" required>
+
+
+  <label for="logo">Logo:</label>
+  <input formControlName="logo" id="logo" name="logo" type="file" required>
+
+  <button type="submit">Submit</button>
+</form>

@@ -21,10 +21,17 @@ export class RegistrationComponent {
       email: '',
       phone_number: '',
       password: '',
+      user_type: '',
     });
   }
 
   submit() {
+    // @ts-ignore
+    const new_user_type: string = this.form.get('user_type').value.charAt(0).toUpperCase() + this.form.get('user_type').value.slice(1);
+    this.form.patchValue({
+      user_type: new_user_type// or 'employee', depending on the desired value
+    });
+
     this.userServices.createUser(this.form).subscribe(response => {
       // @ts-ignore
       this.userServices.setSessionId(response.session_id)

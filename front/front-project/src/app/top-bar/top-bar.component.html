@@ -1,3 +1,5 @@
 <a [routerLink]="['/']">
   <h1>HireHive</h1>
 </a>
+<button *ngIf="isAuthenticated" type="submit" (click)="logout()">Logout</button>
+<button *ngIf="!isAuthenticated" type="submit" (click)="login()">Login</button>

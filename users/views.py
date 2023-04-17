@@ -1,4 +1,3 @@
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ViewSet
 from . import services
 from . import serializers
@@ -37,7 +36,6 @@ class UserViewSet(ViewSet):
 
     @swagger_auto_schema(request_body=serializers.CreateTokenSerializer)
     def create_token(self, request, *args, **kwargs):
-        print(request.user)
         serializer = serializers.CreateTokenSerializer(data=request.data)
         print(request.data)
         serializer.is_valid(raise_exception=True)

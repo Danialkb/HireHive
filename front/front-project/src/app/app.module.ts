@@ -13,11 +13,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import { VerifyRegistrationComponent } from './verify-registration/verify-registration.component';
 import { LoginComponent } from './login/login.component';
 import {AuthInterceptor} from "./interceptor/auth.interceptor";
+import { CompanyRegisterComponent } from './company-register/company-register.component';
 
-// @ts-ignore
-// @ts-ignore
-// @ts-ignore
-// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +24,8 @@ import {AuthInterceptor} from "./interceptor/auth.interceptor";
     UserdetailsComponent,
     RegistrationComponent,
     VerifyRegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    CompanyRegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +36,7 @@ import {AuthInterceptor} from "./interceptor/auth.interceptor";
       { path: 'register', component: RegistrationComponent },
       { path: 'login', component: LoginComponent },
       { path: 'verify-registration', component: VerifyRegistrationComponent },
+      { path: 'register-company', component: CompanyRegisterComponent },
       { path: '', redirectTo: 'home', pathMatch: "full" },
     ])
   ],

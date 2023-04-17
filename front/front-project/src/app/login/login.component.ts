@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
-import {User} from "../models";
 import {UserService} from "../user.service";
 import {AuthInterceptor} from "../interceptor/auth.interceptor";
 
@@ -25,8 +24,10 @@ export class LoginComponent {
 
   submit() {
     this.userServices.createToken(this.form).subscribe((response: any) => {
-        AuthInterceptor.accessToken = response.access;
-        console.log(response);
+        // AuthInterceptor.accessToken = response.access;
+        // AuthInterceptor.refreshToken = response.refresh;
+        localStorage.setItem('access_token', response.access);
+        localStorage.setItem('refresh_token', response.refresh);
         this.router.navigate(['/home']);
       });
   }

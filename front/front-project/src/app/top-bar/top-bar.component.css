@@ -1,0 +1,16 @@
+button[type="submit"] {
+  background-color: white;
+  border: none;
+  color: grey;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+button[type="submit"]:hover {
+  background-color: #616161;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
