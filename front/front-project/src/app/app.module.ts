@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {RouterModule} from "@angular/router";
 import { JobPostListComponent } from './job-post-list/job-post-list.component';
@@ -19,6 +19,7 @@ import { JobPostDetailsComponent } from './job-post-details/job-post-details.com
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,21 +34,25 @@ import { FooterComponent } from './footer/footer.component';
     CompanyDetailsComponent,
     JobPostDetailsComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
   ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    RouterModule.forRoot([
-      { path: 'home', component: CompaniesComponent },
-      { path: 'register', component: RegistrationComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'verify-registration', component: VerifyRegistrationComponent },
-      { path: 'register-company', component: CompanyRegisterComponent },
-      { path: '', redirectTo: 'home', pathMatch: "full" },
-    ])
-  ],
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        RouterModule.forRoot([
+            {path: 'home', component: HomeComponent},
+            {path: 'companies', component: CompaniesComponent},
+            {path: 'register', component: RegistrationComponent},
+            {path: 'login', component: LoginComponent},
+            {path: 'verify-registration', component: VerifyRegistrationComponent},
+            {path: 'job-posts', component: JobPostListComponent},
+            {path: 'job-posts/:jobPostId', component: JobPostDetailsComponent},
+            {path: 'register-company', component: CompanyRegisterComponent},
+            {path: '', redirectTo: 'home', pathMatch: "full"},
+        ]),
+        FormsModule
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

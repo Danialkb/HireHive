@@ -7,7 +7,7 @@ from users.models import User
 
 class Company(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    user = models.OneToOneField(to=User, on_delete=models.CASCADE, related_name='company', default=None)
     name = models.CharField(max_length=255)
     location = models.CharField(max_length=255, blank=True)
     website = models.URLField(blank=True)

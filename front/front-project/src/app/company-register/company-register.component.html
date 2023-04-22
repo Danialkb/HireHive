@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+<form [formGroup]="form" (submit)="submit()">
   <label for="name">Name:</label>
   <input formControlName="name" id="name" name="name" type="text" required>
 
@@ -13,7 +13,7 @@
 
 
   <label for="logo">Logo:</label>
-  <input formControlName="logo" id="logo" name="logo" type="file" required>
+  <input formControlName="logo" id="logo" name="logo" type="file" (change)="onLogoSelect($event)" required>
 
-  <button type="submit">Submit</button>
+  <button type="submit">Create</button>
 </form>

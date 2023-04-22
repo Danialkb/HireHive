@@ -1,1 +1,9 @@
-<p>job-post-details works!</p>
+<div class="job-post-details">
+  <h2>{{jobPost.title}}</h2>
+  <h3>{{jobPost.location}}</h3>
+  <p>{{jobPost.company_name}}</p>
+  <p>{{jobPost.description}}</p>
+  <p>{{jobPost.salary}}</p>
+  <p>{{createTime}}</p>
+</div>
+<button type="button" *ngIf="showDeleteButton" (click)="delete()">Delete</button>

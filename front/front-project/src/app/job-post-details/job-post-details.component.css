@@ -1,0 +1,14 @@
+button {
+  background-color: rgba(255,0,0);
+}
+
+button:hover {
+  background-color: rgba(255,0,0,0.81);
+}
+
+.job-post-details {
+  padding: 10px;
+  font-size: 24px;
+}
+
+

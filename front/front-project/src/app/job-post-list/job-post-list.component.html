@@ -1,1 +1,35 @@
-<p>job-post-list works!</p>
+<button type="button" *ngIf="isEmployer" (click)="showForm()">Create new job post</button>
+<div class="job-post-container">
+  <div *ngFor="let j of jobPosts" class="job-post">
+    <a [routerLink]="['/job-posts/', j.id]" [queryParams]="{id: this.getIdFromParam(), userType: getUserTypeFromParam()}"><h2>{{j.title}}</h2></a>
+    <p>{{j.salary}} $</p>
+    <p>{{j.location}}</p>
+    <p>Company: {{j.company_name}}</p>
+    <p>{{j.created_at}}</p>
+  </div>
+</div>
+
+
+<div class="create-job-post" *ngIf="isClicked">
+  <div class="create-job-post-content">
+    <div class="close-button">
+      <button (click)="isClicked=!isClicked">&times;</button>
+    </div>
+    <div class="create-job-post-form">
+      <label for="title">Title:</label>
+      <input [(ngModel)]="newJobPost.title" id="title" name="title" type="text" required>
+
+      <label for="description">Description:</label>
+      <textarea [(ngModel)]="newJobPost.description" id="description" name="description" type="text"
+                required></textarea>
+
+      <label for="location">Location:</label>
+      <input [(ngModel)]="newJobPost.location" id="location" name="location" type="text" required>
+
+      <label for="salary">Salary:</label>
+      <input [(ngModel)]="newJobPost.salary" id="salary" name="salary" type="number" required>
+
+      <button type="submit" (click)="createPost()">Create</button>
+    </div>
+  </div>
+</div>

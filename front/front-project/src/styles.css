@@ -73,3 +73,52 @@ input[type="radio"] {
   scale: 1.5;
 }
 
+.job-post-container {
+  padding: 15px;
+}
+
+.job-post {
+  font-family: Arial, sans-serif;
+  border: 0.5px solid ghostwhite;
+  border-radius: 5px;
+  box-shadow: rgb(237, 239, 240) 0 2px 12px 0;
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 60%;
+}
+
+.job-post h2 {
+  font-size: 30px;
+  font-weight: 700;
+  height: auto;
+  line-height: 20px;
+
+  margin-bottom: 5px;
+  color: cornflowerblue;
+}
+
+.job-post p {
+  font-size: 20px;
+  margin-bottom: 0;
+}
+
+.close-button {
+  float: right;
+}
+
+.close-button button {
+  margin-top: 0;
+  padding: 0;
+  color: #aaaaaa;
+  font-size: 28px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background-color: rgb(254, 254, 254);
+}
+
+.close-button button:hover {
+  color: #000;
+  background-color: rgb(254, 254, 254);
+}
+

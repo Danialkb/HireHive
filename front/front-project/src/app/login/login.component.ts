@@ -24,12 +24,11 @@ export class LoginComponent {
 
   submit() {
     this.userServices.createToken(this.form).subscribe((response: any) => {
-        // AuthInterceptor.accessToken = response.access;
-        // AuthInterceptor.refreshToken = response.refresh;
         localStorage.setItem('access_token', response.access);
         localStorage.setItem('refresh_token', response.refresh);
         this.router.navigate(['/home']);
       });
+
   }
 
 }

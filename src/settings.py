@@ -74,6 +74,8 @@ CORS_ORIGIN_WHITELIST = ['http://localhost:4200', ]
 CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'src.urls'
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 TEMPLATES = [
     {
@@ -161,7 +163,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=100),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=300),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=10),
 
     'ALGORITHM': 'HS256',

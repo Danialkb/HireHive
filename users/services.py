@@ -14,31 +14,42 @@ from rest_framework_simplejwt import tokens
 class UserServicesInterface(Protocol):
     def create_user(self, data: OrderedDict) -> str: ...
 
-    def verify_user(self, data: OrderedDict) -> None: ...
+    def verify_user(self, data: OrderedDict) -> User: ...
 
     def create_token(self, data: OrderedDict) -> str: ...
 
     def verify_token(self, data: OrderedDict) -> dict: ...
 
+    def get_user(self, data: OrderedDict) -> User: ...
+
 
 class UserServicesV1:
     user_repos: repos.UserReposInterface = repos.UserReposV1()
 
+    def get_user(self, data: OrderedDict) -> User:
+        payload = tokens.AccessToken(data['access_token']).payload
+        user_id = payload.get('user_id')
+
+        return self.user_repos.get_user(data={'id': user_id})
+
     def create_user(self, data: OrderedDict) -> str:
         return self._verify_email(data=data)
 
-    def verify_user(self, data: OrderedDict):
+    def verify_user(self, data: OrderedDict) -> User:
         user_data = cache.get(data['session_id'])
-        user = self.user_repos.create_user(data={
-            'first_name': user_data['first_name'],
-            'last_name': user_data['last_name'],
-            'email': user_data['email'],
-            'phone_number': user_data['phone_number'],
-            'password': user_data['password'],
-            'user_type': user_data['user_type']
-        })
+        if user_data['code'] == data['code']:
+            user = self.user_repos.create_user(data={
+                'first_name': user_data['first_name'],
+                'last_name': user_data['last_name'],
+                'email': user_data['email'],
+                'phone_number': user_data['phone_number'],
+                'password': user_data['password'],
+                'user_type': user_data['user_type']
+            })
 
-        self._send_confirmation_letter_on_email(user=user)
+            self._send_confirmation_letter_on_email(user=user)
+            return user
+        return None
 
     def create_token(self, data: OrderedDict):
         user = self.user_repos.get_user(data={'email': data['email']})
@@ -49,7 +60,7 @@ class UserServicesV1:
         if check_password(password=data['password'], encoded=user.password):
             access = tokens.AccessToken.for_user(user)
             refresh = tokens.RefreshToken.for_user(user)
-            # print(tokens.AccessToken.)
+
             return {
                 'access': str(access),
                 'refresh': str(refresh),
@@ -64,7 +75,7 @@ class UserServicesV1:
 
         access = tokens.AccessToken.for_user(user)
         refresh = tokens.RefreshToken.for_user(user)
-        print(tokens.AccessToken.get(access))
+
         return {
             'access': str(access),
             'refresh': str(refresh),
@@ -75,7 +86,7 @@ class UserServicesV1:
         session_id = self._generate_session_id()
         cache.set(session_id, {**data, 'code': code}, timeout=300)
 
-        self._send_letter_on_email(name=data['first_name'], surname=data['last_name'] ,email=data['email'], code=code)
+        self._send_letter_on_email(name=data['first_name'], surname=data['last_name'], email=data['email'], code=code)
 
         return session_id
 

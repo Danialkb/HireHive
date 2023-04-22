@@ -25,7 +25,17 @@ export class VerifyRegistrationComponent implements OnInit{
   }
 
   submit() {
-    this.userServices.verifyCreation(this.form).subscribe(() => this.router.navigate(['/login']))
+    this.userServices.verifyCreation(this.form).subscribe((user: any) => {
+      if (user.user_type === 'Employee') {
+        this.router.navigate(['/login'])
+      }
+      else {
+        const navigationExtras = {
+          queryParams: { id: user.id }
+        };
+        this.router.navigate(['/register-company'], navigationExtras);
+      }
+    });
   }
 
 }
