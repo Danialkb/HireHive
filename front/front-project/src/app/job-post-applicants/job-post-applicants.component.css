@@ -1,0 +1,11 @@
+.covering-letter {
+  width: 50%;
+  margin-left: 10px;
+  border: 1px solid gainsboro;
+  height: auto;
+}
+
+.covering-letter p {
+  margin: 0;
+  padding: 5px;
+}

@@ -18,8 +18,8 @@ import { CompanyDetailsComponent } from './company-details/company-details.compo
 import { JobPostDetailsComponent } from './job-post-details/job-post-details.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
-import { JobPostApplicationComponent } from './job-post-application/job-post-application.component';
 import { EmployeeRespondsComponent } from './employee-responds/employee-responds.component';
+import { JobPostApplicantsComponent } from './job-post-applicants/job-post-applicants.component';
 
 
 @NgModule({
@@ -37,8 +37,8 @@ import { EmployeeRespondsComponent } from './employee-responds/employee-responds
     JobPostDetailsComponent,
     HomeComponent,
     FooterComponent,
-    JobPostApplicationComponent,
     EmployeeRespondsComponent,
+    JobPostApplicantsComponent,
   ],
     imports: [
         BrowserModule,
@@ -52,6 +52,7 @@ import { EmployeeRespondsComponent } from './employee-responds/employee-responds
             {path: 'verify-registration', component: VerifyRegistrationComponent},
             {path: 'job-posts', component: JobPostListComponent},
             {path: 'job-posts/:jobPostId', component: JobPostDetailsComponent},
+            {path: 'job-posts/:jobPostId/applicants', component: JobPostApplicantsComponent},
             {path: 'register-company', component: CompanyRegisterComponent},
             {path: '', redirectTo: 'home', pathMatch: "full"},
         ]),

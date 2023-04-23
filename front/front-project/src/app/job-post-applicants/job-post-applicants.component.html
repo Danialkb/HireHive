@@ -1,0 +1,11 @@
+<div class="applicants-container">
+  <div *ngFor="let applicant of Applicants" class="applicants">
+    <h3>Sender: {{applicant.first_name}} {{applicant.last_name}}</h3>
+    <p>Email: {{applicant.email}}</p>
+    <p>Covering letter:</p>
+    <div class="covering-letter"><p>{{applicant.covering_letter}}</p></div>
+    <p>Resume:</p>
+    <a href="http://localhost:8000{{applicant.resume}}">View Resume</a>
+  </div>
+</div>
+

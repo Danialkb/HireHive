@@ -41,4 +41,8 @@ export class JobBoardService {
     return this.http.post(`${this.URL}/applicants/`, form);
   }
 
+  getApplicants(postId: string) {
+    return this.http.get(`${this.URL}/job-posts/${postId}/applicants/`)
+  }
+
 }

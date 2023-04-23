@@ -23,8 +23,12 @@ class JobPostSerializer(serializers.ModelSerializer):
 class ApplicantSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
     job_post = serializers.PrimaryKeyRelatedField(queryset=models.JobPost.objects.all())
+    first_name = serializers.ReadOnlyField(source='user.first_name')
+    last_name = serializers.ReadOnlyField(source='user.last_name')
+    # phone_number = serializers.ReadOnlyField(source='user.phone_number')
+    email = serializers.ReadOnlyField(source='user.email')
 
     class Meta:
         model = models.Applicant
-        fields = ('user', 'job_post', 'covering_letter', 'resume')
+        fields = ('user', 'job_post', 'first_name', 'last_name', 'email', 'covering_letter', 'resume')
 

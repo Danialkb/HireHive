@@ -1,3 +1,4 @@
+<a *ngIf="showDeleteButton" [routerLink]="['/job-posts', jobPost.id, 'applicants']" style="float: right; margin: 10px 20px">Show applicants ></a>
 <div class="job-post-details">
   <h2>{{jobPost.title}}</h2>
   <h3>{{jobPost.location}}</h3>
@@ -8,6 +9,8 @@
   <button type="submit" *ngIf="showRespondButton" (click)="showForm()">Respond</button>
 </div>
 <button type="button" *ngIf="showDeleteButton" (click)="delete()">Delete</button>
+
+
 <div class="popup-container" *ngIf="showRespondForm">
   <div class="popup-content">
     <div class="close-button">
