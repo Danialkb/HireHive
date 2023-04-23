@@ -33,7 +33,7 @@ class JobPost(models.Model):
 class Applicant(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     job_post = models.ForeignKey(to=JobPost, on_delete=models.CASCADE, related_name='applicants')
-    user = models.OneToOneField(to=User, on_delete=models.CASCADE)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     covering_letter = models.TextField(default='')
     resume = models.FileField(upload_to='applicant_resumes/', blank=True, null=True)
 

@@ -1,14 +1,23 @@
-button {
+button[type="button"] {
   background-color: rgba(255,0,0);
 }
 
-button:hover {
+button[type="button"]:hover {
   background-color: rgba(255,0,0,0.81);
+}
+
+#popup-respond {
+  width: 30%;
+  margin-left: 10px;
 }
 
 .job-post-details {
   padding: 10px;
   font-size: 24px;
+}
+
+form {
+  margin: 0;
 }
 
 

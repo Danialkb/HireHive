@@ -18,6 +18,8 @@ import { CompanyDetailsComponent } from './company-details/company-details.compo
 import { JobPostDetailsComponent } from './job-post-details/job-post-details.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
+import { JobPostApplicationComponent } from './job-post-application/job-post-application.component';
+import { EmployeeRespondsComponent } from './employee-responds/employee-responds.component';
 
 
 @NgModule({
@@ -35,6 +37,8 @@ import { FooterComponent } from './footer/footer.component';
     JobPostDetailsComponent,
     HomeComponent,
     FooterComponent,
+    JobPostApplicationComponent,
+    EmployeeRespondsComponent,
   ],
     imports: [
         BrowserModule,

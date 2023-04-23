@@ -5,5 +5,22 @@
   <p>{{jobPost.description}}</p>
   <p>{{jobPost.salary}}</p>
   <p>{{createTime}}</p>
+  <button type="submit" *ngIf="showRespondButton" (click)="showForm()">Respond</button>
 </div>
 <button type="button" *ngIf="showDeleteButton" (click)="delete()">Delete</button>
+<div class="popup-container" *ngIf="showRespondForm">
+  <div class="popup-content">
+    <div class="close-button">
+      <button (click)="showRespondForm=!showRespondForm">&times;</button>
+    </div>
+    <form class="popup-form" [formGroup]="form">
+      <label for="covering_letter">Covering letter:</label>
+      <textarea formControlName="covering_letter"  id="covering_letter" name="covering_letter" required></textarea>
+
+      <label for="resume">Resume:</label>
+      <input id="resume" name="resume" type="file" (change)="onResumeSelect($event)">
+
+      <button type="submit" id="popup-respond" (click)="respond()">Respond</button>
+    </form>
+  </div>
+</div>

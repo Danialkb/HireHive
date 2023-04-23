@@ -37,4 +37,8 @@ export class JobBoardService {
     return this.http.delete(`${this.URL}/job-posts/${id}/`);
   }
 
+  sendRespond(form: FormData) {
+    return this.http.post(`${this.URL}/applicants/`, form);
+  }
+
 }

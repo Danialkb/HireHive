@@ -45,7 +45,7 @@ export class CompanyRegisterComponent {
     });
 
     const formData = new FormData();
-    formData.append('user', this.form.value.user); // Replace with the actual user ID value
+    formData.append('user', this.form.value.user);
     formData.append('name', this.form.value.name);
     formData.append('location', this.form.value.location);
     formData.append('description', this.form.value.description);

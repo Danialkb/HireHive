@@ -10,12 +10,12 @@
 </div>
 
 
-<div class="create-job-post" *ngIf="isClicked">
-  <div class="create-job-post-content">
+<div class="popup-container" *ngIf="isClicked">
+  <div class="popup-content">
     <div class="close-button">
       <button (click)="isClicked=!isClicked">&times;</button>
     </div>
-    <div class="create-job-post-form">
+    <div class="popup-form">
       <label for="title">Title:</label>
       <input [(ngModel)]="newJobPost.title" id="title" name="title" type="text" required>
 
