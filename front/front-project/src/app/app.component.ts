@@ -9,12 +9,14 @@ import {NavigationEnd, Router} from "@angular/router";
 export class AppComponent implements OnInit {
   title = 'front-project';
   showTopBar!: boolean;
+  showFooter!: boolean;
   constructor(private router: Router) {
   }
   ngOnInit(): void {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.showTopBar = !(event.urlAfterRedirects === '/login' || event.urlAfterRedirects === '/register' || event.urlAfterRedirects === '/verify-registration' || event.urlAfterRedirects === '/register-company');
+        this.showFooter = this.showTopBar;
       }
     });
   }

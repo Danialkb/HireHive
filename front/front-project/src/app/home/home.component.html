@@ -1,5 +1,46 @@
-<div *ngIf="user">
-  {{user.first_name}}
-  <button *ngIf="user" type="button" (click)="submit()" >My Job Posts</button>
-  {{user.email}}
-</div>
+<main class="sh-main">
+  <div class="sh-head">
+    <h1 class="sh-title">One Search, Millions of Jobs</h1>
+    <div class="sh-form">
+      <div class="sh-form__inputs">
+        <input class="sh-form__input sh-form__input--text" type="text" placeholder="Job Title">
+        <input class="sh-form__input sh-form__input--location" type="text" placeholder="Location">
+      </div>
+      <button class="sh-form__button" type="submit"><p>Search Jobs</p></button>
+    </div>
+  </div>
+
+  <div class="sh-resume-builder">
+    <img class="sh-resume-builder__image"
+         src="https://www.simplyhired.com/_next/image?url=%2Fnext-assets%2Fresume-desktop.webp&w=640&q=75" alt="">
+    <div class="sh-resume-builder__content">
+      <h2 class="sh-resume-builder__title">Free online resume builder</h2>
+      <p class="sh-resume-builder__description">Create a professional resume in minutes.
+        Choose from a library of 30+ free resume templates and samples of career-specific writing examples.</p>
+      <a class="sh-resume-builder__button" href="#"><span>Build your resume</span></a>
+    </div>
+  </div>
+
+  <div class="sh-find-job">
+    <div class="sh-find-job__content">
+      <p class="sh-find-job__location">Work from anywhere</p>
+      <h2 class="sh-find-job__title">Find your dream job, wherever you may be</h2>
+      <span class="sh-find-job__description">
+        Flexibility is the key to happiness. Whether you’re remote, hybrid, or fully in-office, Hired will connect you
+        directly with hiring managers at leading tech companies.
+      </span><br>
+      <a class="sh-find-job__button" href="#">Get Started</a>
+    </div>
+    <img class="sh-find-job__image"
+         src="https://hired.com/assets/home/index/unity/global-8167e9f27542ce60c7e9bc76ddc1c9dbacd724b81996aa20f0129be4fc8709d1.png"
+         alt="">
+  </div>
+
+  <div class="sh-employers">
+    <h2 class="sh-employers__title">Employers: Your perfect hire awaits</h2>
+    <p class="sh-employers__description">Find out why over 3 million employers trust SimplyHired to deliver qualified
+      applicants</p>
+    <a class="sh-employers__button" href="#"><span>Post Jobs Free</span></a>
+  </div>
+</main>
+<app-footer></app-footer>

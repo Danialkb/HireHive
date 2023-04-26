@@ -1,7 +1,9 @@
+<input [(ngModel)]="searchTitle" type="text" style="width: 30%; margin-left: 20px" placeholder="Search for vacancy">
+<button type="submit" (click)="search()">Search</button>
 <button type="button" *ngIf="isEmployer" (click)="showForm()">Create new job post</button>
 <div class="job-post-container">
   <div *ngFor="let j of jobPosts" class="job-post">
-    <a [routerLink]="['/job-posts/', j.id]" [queryParams]="{id: this.getIdFromParam(), userType: getUserTypeFromParam()}"><h2>{{j.title}}</h2></a>
+    <a [routerLink]="['/job-posts/', j.id]" [queryParams]="{userType: getUserTypeFromParam()}"><h2>{{j.title}}</h2></a>
     <p>{{j.salary}} $</p>
     <p>{{j.location}}</p>
     <p>Company: {{j.company_name}}</p>
@@ -29,7 +31,7 @@
       <label for="salary">Salary:</label>
       <input [(ngModel)]="newJobPost.salary" id="salary" name="salary" type="number" required>
 
-      <button type="submit" (click)="createPost()">Create</button>
+      <button type="submit" (click)="createPost()" class="create-button">Create</button>
     </div>
   </div>
 </div>

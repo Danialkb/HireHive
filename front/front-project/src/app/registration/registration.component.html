@@ -9,7 +9,7 @@
   <input formControlName="email" type="email" id="email" name="email" required>
 
   <label for="phone_number">Phone number:</label>
-  <input formControlName="phone_number" type="text" id="phone_number" name="phone_number" required>
+  <input formControlName="phone_number" type="text" id="phone_number" name="phone_number" placeholder="+7" required>
 
   <label for="password">Password:</label>
   <input formControlName="password" type="password" id="password" name="password" required>
@@ -24,6 +24,6 @@
       Employee
     </label>
   </div>
-
+  <p class="error" *ngIf="notValid">User with such email already exists</p>
   <button type="submit">Submit</button>
 </form>

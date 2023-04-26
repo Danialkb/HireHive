@@ -21,7 +21,7 @@ class JobPostSerializer(serializers.ModelSerializer):
 
 
 class ApplicantSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
     job_post = serializers.PrimaryKeyRelatedField(queryset=models.JobPost.objects.all())
     first_name = serializers.ReadOnlyField(source='user.first_name')
     last_name = serializers.ReadOnlyField(source='user.last_name')

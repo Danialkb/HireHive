@@ -1,9 +1,10 @@
-button {
+button[type="button"] {
   margin: 10px 10px 0 0;
   float: right;
 }
 
-button[type="submit"] {
+
+.create-button {
   width: 30%;
   margin-left: 10px;
 }

@@ -1,4 +1,4 @@
-from django.forms import model_to_dict
+from django.contrib.auth.models import AnonymousUser
 from rest_framework.viewsets import ViewSet
 from . import services
 from . import serializers, choices
@@ -34,6 +34,9 @@ class UserViewSet(ViewSet):
         serializer.is_valid(raise_exception=True)
 
         user = self.user_services.verify_user(data=serializer.validated_data)
+        if user is None:
+            return Response(user, status=status.HTTP_400_BAD_REQUEST)
+
         user_data = serializers.CreateUserSerializer(user).data
 
         return Response(user_data, status=status.HTTP_201_CREATED)
@@ -68,7 +71,9 @@ class UserViewSet(ViewSet):
         return Response(user.data)
 
     def get_job_posts(self, request, *args, **kwargs):
-        user = self.user_services.user_repos.get_user({'id': kwargs['id']})
+        user = request.user
+        if not user or isinstance(user, AnonymousUser):
+            return Response({'details': 'You are not owner'}, status=status.HTTP_401_UNAUTHORIZED)
 
         job_posts = user.job_posts.all()
 

@@ -1,6 +1,7 @@
 button[type="submit"] {
-  background-color: white;
+  background-color: #F8F8F8;
   border: none;
+  border-radius: 5px;
   color: grey;
   padding: 8px 16px;
   font-size: 16px;
@@ -12,5 +13,91 @@ button[type="submit"]:hover {
   background-color: #616161;
   color: #fff;
   transition: all 0.3s ease-in-out;
+}
+
+.header {
+  background-color: #F8F8F8;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+nav {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  margin: 0 8px;
+}
+
+nav a {
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 8px 16px;
+}
+
+nav a:hover {
+  background-color: #333;
+  color: #F8F8F8;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.btn-login {
+  background-color: #F8F8F8;
+  color: #333;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: background-color 1s ease;
+  border: 1px solid #333;
+}
+
+.btn-register {
+  background-color: #F8F8F8;
+  color: #333;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: background-color 1s ease;
+  border: 1px solid #333;
+}
+
+.logo-container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  margin-right: 24px;
+  top: 10px;
+  left: 160px;
+}
+
+.logo-container a {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+.sign{
+  position: absolute;
+  right: 10px;
 }
 

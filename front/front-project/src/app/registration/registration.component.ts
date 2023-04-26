@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 })
 export class RegistrationComponent {
   form: FormGroup;
+  notValid: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private userServices: UserService,
@@ -36,7 +37,12 @@ export class RegistrationComponent {
       // @ts-ignore
       this.userServices.setSessionId(response.session_id)
       this.router.navigate(['/verify-registration'])
-    });
+    },
+      (error: any) => {
+        if(error.status === 400) {
+          this.notValid = true;
+        }
+      });
   }
 
 }

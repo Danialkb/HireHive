@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {UserService} from "../user.service";
-import {Router} from "@angular/router";
+import {DefaultTitleStrategy, Router} from "@angular/router";
 
 @Component({
   selector: 'app-verify-registration',
@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 })
 export class VerifyRegistrationComponent implements OnInit{
   form!: FormGroup;
+  notValid = false;
   constructor(
       private formBuilder: FormBuilder,
       private userServices: UserService,
@@ -35,7 +36,13 @@ export class VerifyRegistrationComponent implements OnInit{
         };
         this.router.navigate(['/register-company'], navigationExtras);
       }
-    });
+    },
+      (error: any) => {
+        if(error.status === 400) {
+          this.notValid = true;
+        }
+      }
+    );
   }
 
 }

@@ -4,6 +4,7 @@
 
   <label for="password">Password:</label>
   <input formControlName="password" id="password" name="password" type="password" required>
+  <p class="error" *ngIf="notValid">Invalid email or password</p>
 
   <p>You don't have an account? <a routerLink="/register">Register</a></p>
 

@@ -11,12 +11,12 @@ export class JobBoardService {
   URL = 'http://localhost:8000/api/v1';
   constructor(private http: HttpClient, private formB: FormBuilder) { }
 
-  getEmployerJobPosts(user_id: Number): Observable<JobPost[]> {
-    return this.http.get<JobPost[]>(`${this.URL}/users/${user_id}/job_posts/`);
+  getEmployerJobPosts(): Observable<JobPost[]> {
+    return this.http.get<JobPost[]>(`${this.URL}/users/user/job_posts/`);
   }
 
   getJobPosts(): Observable<JobPost[]> {
-    return this.http.get<JobPost[]>(`${this.URL}/job-posts/`)
+      return this.http.get<JobPost[]>(`${this.URL}/job-posts`)
   }
 
   getJobPost(id: string): Observable<JobPost> {
@@ -31,6 +31,10 @@ export class JobBoardService {
       salary: post.salary
     })
     return this.http.post<JobPost>(`${this.URL}/job-posts/`, form.getRawValue());
+  }
+
+  searchPostsByTitle(title: string): Observable<JobPost[]> {
+    return this.http.get<JobPost[]>(`${this.URL}/job-posts?search=${title}`);
   }
 
   deleteJobPost(id: string) {

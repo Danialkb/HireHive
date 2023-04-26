@@ -8,7 +8,6 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {RouterModule} from "@angular/router";
 import { JobPostListComponent } from './job-post-list/job-post-list.component';
 import { CompaniesComponent } from './companies/companies.component';
-import { UserdetailsComponent } from './userdetails/userdetails.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { VerifyRegistrationComponent } from './verify-registration/verify-registration.component';
 import { LoginComponent } from './login/login.component';
@@ -28,7 +27,6 @@ import { JobPostApplicantsComponent } from './job-post-applicants/job-post-appli
     TopBarComponent,
     JobPostListComponent,
     CompaniesComponent,
-    UserdetailsComponent,
     RegistrationComponent,
     VerifyRegistrationComponent,
     LoginComponent,

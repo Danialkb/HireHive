@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {JobPost} from "../models";
 import {JobBoardService} from "../job-board.service";
-import {ActivatedRoute, Route} from "@angular/router";
+import {ActivatedRoute, Route, Router} from "@angular/router";
 import {Location} from "@angular/common";
 
 @Component({
@@ -14,9 +14,11 @@ export class JobPostListComponent implements OnInit {
   isClicked = false;
   newJobPost!: JobPost;
   isEmployer: boolean = false;
+  searchTitle: string = '';
   constructor(
     private jobBoard: JobBoardService,
     private route: ActivatedRoute,
+    private router: Router,
     private jobService: JobBoardService,
     private location: Location
   ) {
@@ -32,12 +34,11 @@ export class JobPostListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const user_id = this.getIdFromParam();
     this.isEmployer = this.getUserTypeFromParam() === 'Employer';
 
 
     if(this.isEmployer) {
-      this.jobBoard.getEmployerJobPosts(user_id).subscribe((jobs: JobPost[]) => {
+      this.jobBoard.getEmployerJobPosts().subscribe((jobs: JobPost[]) => {
         this.jobPosts = jobs;
       });
     }
@@ -47,6 +48,12 @@ export class JobPostListComponent implements OnInit {
       });
     }
 
+  }
+
+  search() {
+    this.jobService.searchPostsByTitle(this.searchTitle).subscribe((jobs) => {
+      this.jobPosts = jobs;
+    });
   }
 
   showForm() {
@@ -68,6 +75,10 @@ export class JobPostListComponent implements OnInit {
 
   getUserTypeFromParam(): string | null {
     return this.route.snapshot.queryParamMap.get('userType')
+  }
+
+  getTitleFromParam(): string {
+    return String(this.route.snapshot.queryParamMap.get('title'));
   }
 
   refreshPage() {

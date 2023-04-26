@@ -1,0 +1,303 @@
+.sh-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+  font-family: "Roboto", sans-serif;
+  color: #333;
+}
+
+.sh-head {
+  margin: 0px auto 60px auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 60rem;
+  padding: 0 16px;
+  border-color: #E2E8F0;;
+  word-wrap: break-word;
+  border-width: 0;
+  border-style: solid;
+  box-sizing: border-box;
+}
+
+.sh-title {
+  font-size: 2.25rem;
+  line-height: 1.25;
+  font-weight: 600;
+  text-align: left;
+  /*font-size: 40px;*/
+  margin-bottom: 20px;
+}
+
+.sh-form {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  font-feature-settings: "ss04";
+  border-color: #E2E8F0;;
+  word-wrap: break-word;
+  border-width: 0;
+  border-style: solid;
+  box-sizing: border-box;
+  margin-top: 0em;
+
+}
+
+.sh-form__inputs {
+  display: flex;
+  width: 80%;
+}
+
+.sh-form__input {
+  width: 100%;
+  outline: transparent solid 2px;
+  outline-offset: 2px;
+  position: relative;
+  appearance: none;
+  transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  transition-duration: 200ms;
+  border-radius: 4px;
+  font-size: 1rem;
+  padding-inline: 12px;
+  height: 2.875rem;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border-width: 1px;
+  border-style: solid;
+  border-image: initial;
+  border-color: #C6C6C6;;
+  background: inherit;
+  min-width: 230px;
+  margin-right: 20px ;
+}
+
+.sh-form__input::placeholder {
+  color: #999;
+  font-size: 1rem;
+}
+
+.sh-form__button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 40px;
+  background-color: #9C0F68;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 600;
+  height: 100%;
+}
+.sh-form__button p {
+  color: white;
+  margin: 0;
+}
+
+.sh-form__button:hover {
+  background-color: #3f0329;
+}
+
+.sh-upload {
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  text-align: left;
+}
+
+.sh-upload a {
+  color: #161616;;
+}
+
+.sh-resume-builder {
+  display: flex;
+  margin-bottom: 10px;
+  min-height: 355px;
+  margin-top: 45px;
+  border-width: 0;
+  border-style: solid;
+  box-sizing: border-box;
+  width: 1500px;
+}
+
+.sh-resume-builder__image {
+  left: 0px;
+  width: 60%;
+  height: 100%;
+  flex: 1;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 20px;
+  background: #FFEBDE;
+}
+
+.sh-resume-builder__content {
+  flex: 2;
+  margin-left: 150px;
+  width: 50%;
+}
+
+.sh-resume-builder__content p {
+  width: 50%;
+}
+
+.sh-resume-builder__title {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.sh-resume-builder__description {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.sh-resume-builder__button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 9999px;
+  background-color: #9C0F68;
+  text-decoration: none;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.sh-resume-builder__button:hover {
+  background-color: #3f0329;
+}
+
+.sh-find-job {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-left: -2rem;
+  text-align: left;
+  height: 100%;
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.sh-find-job__content {
+  flex: 2;
+  display: inline-block;
+  width: 100%;
+  padding-top: 10rem ;
+  padding-bottom: 2rem ;
+
+}
+
+.sh-find-job__location {
+  padding-left: 0 ;
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  vertical-align: top;
+  font-size: 20px;
+  margin-bottom: 10px;
+  line-height: 2rem;
+  color: #0c0c0c;
+  letter-spacing: unset;
+  font-weight: 700;
+  padding-bottom: 0;
+}
+
+.sh-find-job__title {
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  vertical-align: top;
+  font-size: 3.5rem;
+  line-height: 4rem;
+  color: #0c0c0c;
+  font-family: itc-avant-garde-gothic-pro, sans-serif;
+  font-weight: 700;
+}
+
+.sh-find-job__description {
+  color: #0c0c0c;
+  font-family: garamond-premier-pro, serif;
+  font-size: 1.6rem;
+  line-height: 2rem;
+  max-width: 38.5rem;
+  padding-bottom: 2rem;
+  padding-left: 0;
+}
+
+.sh-find-job__button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  width: 10.6rem;
+  font-weight: 700;
+  font-size: 1.5rem;
+  background-color: #9C0F68;
+  color: #ffffff;
+  /*border-radius: 0.8rem;*/
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+.sh-find-job__button:hover {
+  background-color: #3f0329;
+}
+
+.sh-find-job__image {
+  flex: 1;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-left: 20px;
+  margin-top: 70px;
+}
+
+.sh-employers {
+  height: 710px;
+  background-image: url(https://pp.userapi.com/c848520/v848520714/200f4/xaRiXOgv4K0.jpg);
+  background-color: #f5f5f5;
+  padding: 80px 0;
+  text-align: left;
+}
+
+.sh-employers__title {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #1c1c1c;
+  margin-left: 20px;
+}
+
+.sh-employers__description {
+  font-size: 18px;
+  margin-bottom: 40px;
+  color: #666;
+  margin-left: 20px;
+}
+
+.sh-employers__button {
+  display: inline-block;
+  padding: 12px 40px;
+  background-color: #9C0F68;
+  border-radius: 4px;
+  font-size: 18px;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  margin-left: 20px;
+}
+
+.sh-employers__button:hover {
+  background-color: #d85e00;
+}
+
+span {
+  color: whitesmoke;
+}
