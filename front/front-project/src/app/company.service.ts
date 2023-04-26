@@ -11,8 +11,12 @@ export class CompanyService {
   URL: string = 'http://127.0.0.1:8000/api/v1';
   constructor(private http: HttpClient) { }
 
-  getCompanies() {
-    return this.http.get(`${this.URL}/companies/`);
+  getCompanies(): Observable<Company[]> {
+    return this.http.get<Company[]>(`${this.URL}/companies/`);
+  }
+
+  getCompany(id: string): Observable<Company> {
+    return this.http.get<Company>(`${this.URL}/companies/${id}/`)
   }
 
   createCompany(form: FormData) {

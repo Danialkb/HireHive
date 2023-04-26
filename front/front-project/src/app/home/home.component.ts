@@ -9,6 +9,8 @@ import {Router} from "@angular/router";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  searchTitle: string = '';
+  searchLocation: string = '';
   constructor(private router: Router) {
 
   }
@@ -16,7 +18,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
+  searchJob() {
+    this.router.navigate(['/job-posts'], )
+  }
 
 
 

@@ -10,7 +10,7 @@ import {UserService} from "../user.service";
   styleUrls: ['./top-bar.component.css']
 })
 export class TopBarComponent implements OnInit{
-  isAuthenticated!: boolean;
+  isAuthenticated: boolean = false;
   user!: User;
 
   constructor(private location: Location, private router: Router, private userService: UserService) {
@@ -18,9 +18,11 @@ export class TopBarComponent implements OnInit{
 
   ngOnInit(): void {
       this.isAuthenticated = localStorage.getItem('access_token') !== null;
-      this.userService.getUser().subscribe((user: any) => {
-        this.user = user;
-      });
+      if(this.isAuthenticated) {
+        this.userService.getUser().subscribe((user: any) => {
+          this.user = user;
+        });
+      }
   }
 
   submit() {

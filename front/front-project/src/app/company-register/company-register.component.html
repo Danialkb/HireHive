@@ -1,19 +1,112 @@
-<form [formGroup]="form" (submit)="submit()">
-  <label for="name">Name:</label>
-  <input formControlName="name" id="name" name="name" type="text" required>
+<!--<form [formGroup]="form" (submit)="submit()">-->
+<!--  <label for="name">Name:</label>-->
+<!--  <input formControlName="name" id="name" name="name" type="text" required>-->
 
-  <label for="location">Location:</label>
-  <input formControlName="location" id="location" name="location" type="text" required>
+<!--  <label for="location">Location:</label>-->
+<!--  <input formControlName="location" id="location" name="location" type="text" required>-->
 
-  <label for="description">Description:</label>
-  <input formControlName="description" id="description" name="description" type="text" required>
+<!--  <label for="description">Description:</label>-->
+<!--  <input formControlName="description" id="description" name="description" type="text" required>-->
 
-  <label for="website">Website:</label>
-  <input formControlName="website" id="website" name="website" type="url" required>
+<!--  <label for="website">Website:</label>-->
+<!--  <input formControlName="website" id="website" name="website" type="url" required>-->
 
 
-  <label for="logo">Logo:</label>
-  <input formControlName="logo" id="logo" name="logo" type="file" (change)="onLogoSelect($event)" required>
+<!--  <label for="logo">Logo:</label>-->
+<!--  <input formControlName="logo" id="logo" name="logo" type="file" (change)="onLogoSelect($event)" required>-->
 
-  <button type="submit">Create</button>
-</form>
+<!--  <button type="submit">Create</button>-->
+<!--</form>-->
+
+<div class="sign-up">
+  <div class="sign-up-header">
+    <h1>Add Company Details</h1>
+  </div>
+  <form [formGroup]="form" (submit)="submit()">
+    <div class="input-container">
+      <label class="input-label" for="name"> Company Name:</label>
+      <div class="input-element">
+        <div class="left-icon">
+          <img
+            src="assets/company.svg"
+            alt="presentation">
+        </div>
+        <input formControlName="name" type="text" id="name" name="name" required>
+      </div>
+    </div>
+    <div class="input-error">
+      <img
+        src="assets/alert.svg"
+        alt="warning">
+      <span>Please enter a company name</span>
+    </div>
+    <div class="input-container">
+      <label class="input-label" for="location">Location:</label>
+      <div class="input-element">
+        <div class="left-icon">
+          <img src="assets/location.svg" alt="presentation">
+        </div>
+        <input formControlName="location" id="location" name="location" type="text" required>
+      </div>
+    </div>
+    <div class="input-error">
+      <img
+        src="assets/alert.svg"
+        alt="warning">
+      <span>Please enter a location</span>
+    </div>
+    <div class="input-container">
+      <label class="input-label" for="description">Description:</label>
+      <div class="input-element">
+        <div class="left-icon">
+          <img
+            src="assets/description.svg"
+            alt="presentation">
+        </div>
+        <input formControlName="description" id="description" name="description" type="text" required>
+      </div>
+    </div>
+    <div class="input-error">
+      <img
+        src="assets/alert.svg"
+        alt="warning">
+      <span>Please enter a description</span>
+    </div>
+    <div class="input-container">
+      <label class="input-label" for="website">Website:</label>
+      <div class="input-element">
+        <div class="left-icon">
+          <img
+            src="assets/website.svg"
+            alt="presentation">
+        </div>
+        <input formControlName="website" id="website" name="website" type="url" required>
+      </div>
+    </div>
+    <div class="input-error">
+      <img
+        src="assets/alert.svg"
+        alt="warning">
+      <span>Please enter a website</span>
+    </div>
+    <div class="input-container">
+      <label class="input-label" for="logo">Logo:</label>
+      <div class="input-element">
+        <div class="left-icon">
+          <img
+            src="assets/company-logo.svg"
+            alt="presentation">
+        </div>
+        <input formControlName="logo" id="logo" name="logo" type="file" (change)="onLogoSelect($event)" required>
+      </div>
+    </div>
+    <div class="input-error">
+      <img
+        src="assets/alert.svg"
+        alt="warning">
+      <span>Please enter a logo</span>
+    </div>
+    <button type="submit" (click)="submit()">Create</button>
+  </form>
+</div>
+

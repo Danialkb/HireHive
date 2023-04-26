@@ -1,4 +1,7 @@
-<div *ngFor="let company of companies">
-  <h3>{{company.name}}</h3>
-<!--  <img src="{{company.logo}}" alt="alt">-->
+<div *ngFor="let company of companies" class="job-post-container">
+  <div class="job-post">
+    <img src="{{company.logo}}" alt="alt">
+    <a [routerLink]="['/companies', company.id]"><h2>{{company.name}}</h2></a>
+    <h3>{{company.location}}</h3>
+  </div>
 </div>

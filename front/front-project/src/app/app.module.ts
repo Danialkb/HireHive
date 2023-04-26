@@ -45,6 +45,7 @@ import { JobPostApplicantsComponent } from './job-post-applicants/job-post-appli
         RouterModule.forRoot([
             {path: 'home', component: HomeComponent},
             {path: 'companies', component: CompaniesComponent},
+            {path: 'companies/:companyId', component: CompanyDetailsComponent},
             {path: 'register', component: RegistrationComponent},
             {path: 'login', component: LoginComponent},
             {path: 'verify-registration', component: VerifyRegistrationComponent},

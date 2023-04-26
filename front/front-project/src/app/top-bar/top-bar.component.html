@@ -7,10 +7,11 @@
   <nav>
     <ul class="top-bar">
       <li><a routerLink="/home">Home</a></li>
-      <li><a [routerLink]="['job-posts']" [queryParams]="{userType: user.user_type}">Jobs</a></li>
+      <li *ngIf="user"><a routerLink="/job-posts" [queryParams]="{userType: user.user_type}">Jobs</a></li>
+      <li *ngIf="!user"><a routerLink="/job-posts">Jobs</a></li>
       <li><a routerLink="/companies">Companies</a></li>
       <li><a routerLink="/home">More</a></li>
-      <li><a *ngIf="user.user_type=='Employer'" (click)="submit()" >My Job Posts</a></li>
+      <li><a *ngIf="user?.user_type=='Employer'" (click)="submit()" >My Job Posts</a></li>
       <li *ngIf="user">Welcome</li>
       <li *ngIf="user">{{user.first_name}}</li>
       <li *ngIf="user">{{user.email}}</li>

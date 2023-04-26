@@ -1,0 +1,12 @@
+div {
+  padding: 0px 0 0 15px;
+}
+div h2 {
+  font-size: 40px;
+}
+
+div img {
+  float: right;
+  width: 20%;
+  margin-right: 70px;
+}

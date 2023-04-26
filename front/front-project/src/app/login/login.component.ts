@@ -33,7 +33,11 @@ export class LoginComponent {
         localStorage.setItem('access_token', response.access);
         localStorage.setItem('refresh_token', response.refresh);
         this.router.navigate(['/home']);
-      }
+      }},
+      (error: any) => {
+        if(error.status === 400) {
+          this.notValid = true;
+        }
       }
     );
   }

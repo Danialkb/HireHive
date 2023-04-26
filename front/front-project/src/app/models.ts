@@ -3,6 +3,7 @@ import {v4 as uuidv4} from 'uuid';
 
 
 export interface Company {
+  id: string;
   name: string;
   location: string;
   website: string;
