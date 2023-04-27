@@ -42,4 +42,20 @@ export class LoginComponent {
     );
   }
 
+  togglePasswordVisibility(): void {
+    const passwordInput = document.getElementById('password') as HTMLInputElement;
+    const eyeIcons = document.querySelectorAll('.input-eye i');
+
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      (eyeIcons[0] as HTMLInputElement).style.display = 'none';
+      (eyeIcons[1] as HTMLInputElement).style.display = 'block';
+    } else {
+      passwordInput.type = 'password';
+      (eyeIcons[0] as HTMLInputElement).style.display = 'block';
+      (eyeIcons[1] as HTMLInputElement).style.display = 'none';
+    }
+  }
+
+
 }

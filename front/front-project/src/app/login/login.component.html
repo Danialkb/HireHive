@@ -1,12 +1,59 @@
-<form [formGroup]="form" (submit)="submit()">
-  <label for="email">Email:</label>
-  <input formControlName="email" id="email" name="email" type="email" required>
+<div class="sign-up">
+  <div class="sign-up-header">
+    <a href="/home">Go home</a>
+    <h1>Sign In</h1>
+    <p>Welcome back! Sign in to start hiring and managing your employees or find job.</p>
+  </div>
+  <form [formGroup]="form" (submit)="submit()">
+    <div class="input-container">
+      <label class="input-label" for="email">Email:</label>
+      <div class="input-element">
+        <div class="left-icon">
+          <img
+            src="assets/email.svg"
+            alt="presentation">
+        </div>
+        <input formControlName="email" type="email" id="email" name="email" required>
+      </div>
+    </div>
+    <div class="input-error">
+      <img
+        src="assets/alert.svg"
+        alt="warning">
+      <span>Please enter a email</span>
+    </div>
+    <div class="input-container">
+      <label class="input-label" for="password">Password:</label>
+      <div class="input-element">
+        <div class="left-icon">
+          <img src="assets/password.svg"
+               alt="presentation">
+        </div>
+        <input formControlName="password" id="password" name="password" required>
+        <div class="input-eye">
+          <i class="fa fa-eye" (click)="togglePasswordVisibility()"></i>
+          <i class="fa fa-eye-slash" (click)="togglePasswordVisibility()"></i>
+        </div>
+      </div>
+      <p class="error" *ngIf="notValid">Invalid email or password</p>
+    </div>
+    <button type="submit" (click)="submit()">Sign in</button>
+    <div class="bottom">
+      <hr>
+      <span>   Haven't registered yet? <a href="/register">Register</a></span>
+    </div>
+  </form>
+</div>
 
-  <label for="password">Password:</label>
-  <input formControlName="password" id="password" name="password" type="password" required>
-  <p class="error" *ngIf="notValid">Invalid email or password</p>
+<!--<form [formGroup]="form" (submit)="submit()">-->
+<!--  <label for="email">Email:</label>-->
+<!--  <input formControlName="email" id="email" name="email" type="email" required>-->
 
-  <p>You don't have an account? <a routerLink="/register">Register</a></p>
+<!--  <label for="password">Password:</label>-->
+<!--  <input formControlName="password" id="password" name="password" type="password" required>-->
+<!--  <p class="error" *ngIf="notValid">Invalid email or password</p>-->
 
-  <button type="submit">Log In</button>
-</form>
+<!--  <p>You don't have an account? <a routerLink="/register">Register</a></p>-->
+
+<!--  <button type="submit">Log In</button>-->
+<!--</form>-->

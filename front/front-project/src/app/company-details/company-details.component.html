@@ -1,7 +1,13 @@
-<div>
-  <img src="{{company.logo}}">
-  <h2>{{company.name}}</h2>
-  <h2>{{company.location}}</h2>
-  <h3><a href="{{company.website}}">Our website</a></h3>
-  <p>{{company.description}}</p>
+<div class="company-detail-container">
+  <div class="left-part">
+    <img src="{{company.logo}}" class="company-detail__logo">
+    <h2 class="company-detail__location">{{company.location}}</h2>
+    <a class="company-detail__website" href="{{company.website}}">Our website</a>
+    <a href="" class="buttons"><span>I want work here</span></a>
+    <a href="" class="buttons"><span>Subscribe</span></a>
+  </div>
+  <div class="right-part">
+    <h2 class="company-detail__name">{{company.name}}</h2>
+    <p class="company-detail__description">{{company.description}}</p>
+  </div>
 </div>

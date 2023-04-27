@@ -1,29 +1,121 @@
-<form [formGroup]="form" (submit)="submit()">
-  <label for="first_name">Name:</label>
-  <input formControlName="first_name" type="text" id="first_name" name="first_name" required>
-
-  <label for="last_name">Surname:</label>
-  <input formControlName="last_name" type="text" id="last_name" name="last_name" required>
-
-  <label for="email">Email:</label>
-  <input formControlName="email" type="email" id="email" name="email" required>
-
-  <label for="phone_number">Phone number:</label>
-  <input formControlName="phone_number" type="text" id="phone_number" name="phone_number" placeholder="+7" required>
-
-  <label for="password">Password:</label>
-  <input formControlName="password" type="password" id="password" name="password" required>
-
-  <div>
-    <label for="employer">
-      <input type="radio" id="employer" name="user_type" value="employer" formControlName="user_type" required>
-      Employer
-    </label>
-    <label for="employee">
-      <input type="radio" id="employee" name="user_type" value="employee" formControlName="user_type" required>
-      Employee
-    </label>
+<div class="sign-up">
+  <div class="sign-up-header">
+    <h1>Welcome to HireHive</h1>
+    <p>Create a free HireHive account to post jobs and manage your employees in one convenient platform.</p>
   </div>
-  <p class="error" *ngIf="notValid">User with such email already exists</p>
-  <button type="submit">Submit</button>
-</form>
+  <form [formGroup]="form" (submit)="submit()">
+    <div class="input-container">
+      <label class="input-label" for="first_name">Name:</label>
+      <div class="input-element">
+        <div class="left-icon">
+          <img src="assets/person.svg" alt="presentation"/>
+        </div>
+        <input formControlName="first_name" type="text" id="first_name" name="first_name" required>
+      </div>
+    </div>
+    <div class="input-error">
+      <img src="assets/alert.svg" alt="warning">
+      <span>Please enter a name</span>
+    </div>
+    <div class="input-container">
+      <label class="input-label" for="last_name">Surname:</label>
+      <div class="input-element">
+        <div class="left-icon">
+          <img src="assets/person.svg" alt="presentation">
+        </div>
+        <input formControlName="last_name" type="text" id="last_name" name="last_name" required>
+      </div>
+    </div>
+    <div class="input-error">
+      <img src="assets/alert.svg" alt="warning">
+      <span>Please enter a surname</span>
+    </div>
+    <div class="input-container">
+      <label class="input-label" for="email">Email:</label>
+      <div class="input-element">
+        <div class="left-icon">
+          <img src="assets/email.svg" alt="presentation">
+        </div>
+        <input formControlName="email" type="email" id="email" name="email" required>
+      </div>
+    </div>
+    <div class="input-error">
+      <img src="assets/alert.svg" alt="warning">
+      <span>Please enter a email</span>
+    </div>
+    <div class="input-container">
+      <label class="input-label" for="phone_number">Phone number:</label>
+      <div class="input-element">
+        <div class="left-icon">
+          <img src="assets/phone.svg" alt="presentation">
+        </div>
+        <input formControlName="phone_number" type="text" id="phone_number" name="phone_number" placeholder="+7" required>
+      </div>
+    </div>
+    <div class="input-error">
+      <img src="assets/alert.svg" alt="warning">
+      <span>Please enter a phone number</span>
+    </div>
+    <div class="input-container">
+      <label class="input-label" for="password">Password:</label>
+      <div class="input-element">
+        <div class="left-icon">
+          <img src="assets/password.svg" alt="presentation">
+        </div>
+        <input formControlName="password" id="password" name="password" required>
+        <div class="input-eye">
+          <i class="fa fa-eye" (click)="togglePasswordVisibility()"></i>
+          <i class="fa fa-eye-slash" (click)="togglePasswordVisibility()"></i>
+        </div>
+      </div>
+    </div>
+    <div class="input-error">
+      <img src="assets/alert.svg" alt="warning">
+      <span>Please enter a password</span>
+    </div>
+    <div class="emplo">
+      <label for="employer">
+        <input type="radio" id="employer" name="user_type" value="employer" formControlName="user_type" required>
+        Employer
+      </label>
+      <label for="employee">
+        <input type="radio" id="employee" name="user_type" value="employee" formControlName="user_type" required>
+        Employee
+      </label>
+    </div>
+    <button type="submit" (click)="submit()">Submit</button>
+    <div class="bottom">
+      <span>Already have account? <a href="/login"> Login</a></span>
+    </div>
+  </form>
+</div>
+
+<!--<form [formGroup]="form" (submit)="submit()">-->
+<!--  <label for="first_name">Name:</label>-->
+<!--  <input formControlName="first_name" type="text" id="first_name" name="first_name" required>-->
+
+<!--  <label for="last_name">Surname:</label>-->
+<!--  <input formControlName="last_name" type="text" id="last_name" name="last_name" required>-->
+
+<!--  <label for="email">Email:</label>-->
+<!--  <input formControlName="email" type="email" id="email" name="email" required>-->
+
+<!--  <label for="phone_number">Phone number:</label>-->
+<!--  <input formControlName="phone_number" type="text" id="phone_number" name="phone_number" placeholder="+7" required>-->
+
+<!--  <label for="password">Password:</label>-->
+<!--  <input formControlName="password" type="password" id="password" name="password" required>-->
+
+<!--  <div>-->
+<!--    <label for="employer">-->
+<!--      <input type="radio" id="employer" name="user_type" value="employer" formControlName="user_type" required>-->
+<!--      Employer-->
+<!--    </label>-->
+<!--    <label for="employee">-->
+<!--      <input type="radio" id="employee" name="user_type" value="employee" formControlName="user_type" required>-->
+<!--      Employee-->
+<!--    </label>-->
+<!--  </div>-->
+<!--  <p class="error" *ngIf="notValid">User with such email already exists</p>-->
+<!--  <button type="submit">Submit</button>-->
+<!--</form>-->

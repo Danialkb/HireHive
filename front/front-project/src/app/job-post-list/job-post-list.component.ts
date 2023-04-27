@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {JobPost} from "../models";
 import {JobBoardService} from "../job-board.service";
 import {ActivatedRoute, Route, Router} from "@angular/router";
@@ -14,7 +14,8 @@ export class JobPostListComponent implements OnInit {
   isClicked = false;
   newJobPost!: JobPost;
   isEmployer: boolean = false;
-  searchTitle: string = '';
+  searchTitle: string | null = '';
+  activate: boolean = false;
   constructor(
     private jobBoard: JobBoardService,
     private route: ActivatedRoute,
@@ -36,22 +37,29 @@ export class JobPostListComponent implements OnInit {
   ngOnInit(): void {
     this.isEmployer = this.getUserTypeFromParam() === 'Employer';
 
-
-    if(this.isEmployer) {
-      this.jobBoard.getEmployerJobPosts().subscribe((jobs: JobPost[]) => {
-        this.jobPosts = jobs;
-      });
+    if(this.getTitleFromParam() !== null) {
+      console.log(this.getTitleFromParam());
+      this.searchTitle = this.getTitleFromParam();
+      this.search()
     }
     else {
-      this.jobBoard.getJobPosts().subscribe((jobs: JobPost[]) => {
-        this.jobPosts = jobs;
-      });
+      if (this.isEmployer) {
+        this.jobBoard.getEmployerJobPosts().subscribe((jobs: JobPost[]) => {
+          this.jobPosts = jobs;
+          for(let j of this.jobPosts) {
+            j.created_at = new Date(j.created_at)
+          }
+        });
+      } else {
+        this.jobBoard.getJobPosts().subscribe((jobs: JobPost[]) => {
+          this.jobPosts = jobs;
+        });
+      }
     }
-
   }
 
   search() {
-    this.jobService.searchPostsByTitle(this.searchTitle).subscribe((jobs) => {
+    this.jobService.searchPostsByTitle(String(this.searchTitle)).subscribe((jobs) => {
       this.jobPosts = jobs;
     });
   }
@@ -77,8 +85,8 @@ export class JobPostListComponent implements OnInit {
     return this.route.snapshot.queryParamMap.get('userType')
   }
 
-  getTitleFromParam(): string {
-    return String(this.route.snapshot.queryParamMap.get('title'));
+  getTitleFromParam() {
+    return this.route.snapshot.queryParamMap.get('title');
   }
 
   refreshPage() {

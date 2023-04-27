@@ -10,7 +10,6 @@ import {Router} from "@angular/router";
 })
 export class HomeComponent implements OnInit {
   searchTitle: string = '';
-  searchLocation: string = '';
   constructor(private router: Router) {
 
   }
@@ -19,7 +18,7 @@ export class HomeComponent implements OnInit {
   }
 
   searchJob() {
-    this.router.navigate(['/job-posts'], )
+    this.router.navigate(['/job-posts'], {queryParams: {title: this.searchTitle}});
   }
 
 

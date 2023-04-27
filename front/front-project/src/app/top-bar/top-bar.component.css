@@ -87,17 +87,21 @@ nav a:hover {
   align-items: center;
   margin-right: 24px;
   top: 10px;
-  left: 160px;
+  left: 140px;
 }
 
 .logo-container a {
-  font-size: 24px;
-  font-weight: bold;
+  width: 105px;
+  height: 100%;
   color: #333;
   text-decoration: none;
 }
 .sign{
   position: absolute;
   right: 10px;
+}
+
+.logo-container img {
+  width: 100%;
 }
 

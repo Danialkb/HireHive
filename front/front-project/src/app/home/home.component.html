@@ -3,8 +3,8 @@
     <h1 class="sh-title">One Search, Millions of Jobs</h1>
     <div class="sh-form">
       <div class="sh-form__inputs">
-        <input class="sh-form__input sh-form__input--text" type="text" placeholder="Job Title">
-        <input class="sh-form__input sh-form__input--location" type="text" placeholder="Location">
+        <input class="sh-form__input sh-form__input--text" type="text" placeholder="Job Title" [(ngModel)]="searchTitle">
+<!--        <input class="sh-form__input sh-form__input&#45;&#45;location" type="text" placeholder="Location">-->
       </div>
       <button class="sh-form__button" type="submit" (click)="searchJob()"><p>Search Jobs</p></button>
     </div>
