@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  hirehive:
+    container_name: hirehive
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    command:
+      - /start-django.sh
+    ports:
+      - "9111:8000"
+    depends_on:
+      - hirehive-db
+      - hirehive-redis
+
+
+  hirehive-db:
+    container_name: hirehive-db
+    image: postgres:14
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: Dankb2131193*
+    ports:
+      - "6543:5432"
+  hirehive-redis:
+    container_name: hirehive-redis
+    image: redis:7
+    ports:
+      - "1112:6379"
