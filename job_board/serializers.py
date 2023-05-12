@@ -27,8 +27,9 @@ class ApplicantSerializer(serializers.ModelSerializer):
     last_name = serializers.ReadOnlyField(source='user.last_name')
     # phone_number = serializers.ReadOnlyField(source='user.phone_number')
     email = serializers.ReadOnlyField(source='user.email')
+    status = serializers.CharField(read_only=True)
 
     class Meta:
         model = models.Applicant
-        fields = ('user', 'job_post', 'first_name', 'last_name', 'email', 'covering_letter', 'resume')
+        fields = ('user', 'job_post', 'first_name', 'last_name', 'email', 'covering_letter', 'resume', 'status')
 

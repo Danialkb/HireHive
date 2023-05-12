@@ -8,7 +8,7 @@ import {User} from "./models";
   providedIn: 'root'
 })
 export class UserService {
-  URL: string = 'http://127.0.0.1:8000/api/v1';
+  URL: string = 'http://localhost:8000/api/v1';
   session_id: string = "";
   constructor(private http: HttpClient) { }
 

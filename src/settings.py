@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
     'companies',
 
     'rest_framework',
+    'channels',
     'rest_framework_simplejwt',
     'debug_toolbar',
     'drf_yasg',
@@ -64,11 +66,13 @@ MIDDLEWARE = [
 
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    # 'corsheaders.middleware.CorsMiddleware',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_WHITELIST = ['http://localhost:4200', ]
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:4200',
+]
 CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'src.urls'
@@ -92,6 +96,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'src.wsgi.application'
+ASGI_APPLICATION = 'src.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -205,3 +210,14 @@ SWAGGER_SETTINGS = {
 CORS_ALLOWED_ORIGINS = (
     'http://localhost:4200',
 )
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('hirehive-redis', 6379)],
+        },
+    },
+}
+
+

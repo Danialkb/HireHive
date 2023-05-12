@@ -15,6 +15,9 @@ services:
     depends_on:
       - hirehive-db
       - hirehive-redis
+    volumes:
+      - hirehive-media:/media
+      - hirehive-static:/static
 
 
   hirehive-db:
@@ -23,6 +26,8 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: Dankb2131193*
+    volumes:
+      - hirehive-db-data:/var/lib/postgresql/data
     ports:
       - "6543:5432"
   hirehive-redis:
@@ -30,3 +35,7 @@ services:
     image: redis:7
     ports:
       - "1112:6379"
+volumes:
+  hirehive-db-data: {}
+  hirehive-media: {}
+  hirehive-static: {}

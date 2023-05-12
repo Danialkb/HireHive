@@ -8,7 +8,7 @@ import {FormGroup} from "@angular/forms";
   providedIn: 'root'
 })
 export class CompanyService {
-  URL: string = 'http://127.0.0.1:8000/api/v1';
+  URL: string = 'http://localhost:8000/api/v1';
   constructor(private http: HttpClient) { }
 
   getCompanies(): Observable<Company[]> {

@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AnonymousUser
+from rest_framework.generics import get_object_or_404
 from rest_framework.viewsets import ViewSet
 from . import services
 from . import serializers, choices
@@ -7,6 +8,8 @@ from rest_framework import status
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from job_board import serializers as job_board_serializers
+from job_board.models import Applicant
+from users.models import User
 
 
 class UserViewSet(ViewSet):
@@ -78,5 +81,14 @@ class UserViewSet(ViewSet):
         job_posts = user.job_posts.all()
 
         serializer = job_board_serializers.JobPostSerializer(job_posts, many=True)
+
+        return Response(serializer.data)
+
+    def get_user_applicants(self, request, id=None):
+        user = get_object_or_404(User, id=id)
+
+        applicants = Applicant.objects.filter(user=user)
+
+        serializer = job_board_serializers.ApplicantSerializer(applicants, many=True)
 
         return Response(serializer.data)
