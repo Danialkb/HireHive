@@ -16,7 +16,7 @@ export class JobBoardService {
   }
 
   getJobPosts(): Observable<JobPost[]> {
-      return this.http.get<JobPost[]>(`${this.URL}/job-posts`)
+      return this.http.get<JobPost[]>(`${this.URL}/job-posts/`)
   }
 
   getJobPost(id: string): Observable<JobPost> {
@@ -34,7 +34,7 @@ export class JobBoardService {
   }
 
   searchPostsByTitle(title: string): Observable<JobPost[]> {
-    return this.http.get<JobPost[]>(`${this.URL}/job-posts?search=${title}&`);
+    return this.http.get<JobPost[]>(`${this.URL}/job-posts?search=${title}`);
   }
 
   deleteJobPost(id: string) {

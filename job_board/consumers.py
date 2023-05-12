@@ -22,6 +22,16 @@ class JobPostApplicantConsumer(AsyncWebsocketConsumer):
         )
 
     async def send_notification(self, event: dict):
+
         await self.send(text_data=json.dumps(event))
+
+    # async def notify_applicant(self, event: dict):
+    #     status = event.get('status')
+    #
+    #     notification = {
+    #         'message': f'Your application status is "{status}".'
+    #     }
+    #
+    #     await self.send_notification(notification)
 
 

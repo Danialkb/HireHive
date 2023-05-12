@@ -7,12 +7,13 @@ from . import models
 
 
 @receiver(post_save, sender=models.Applicant)
-def send_order_notification(sender, instance, **kwargs):
+def send_applicant_notification(sender, instance, **kwargs):
     channel_layer = get_channel_layer()
-    async_to_sync(channel_layer.group_send)(
-       f'{instance.id}',
+    group_send = async_to_sync(channel_layer.group_send)
+    group_send(
+        f'{instance.id}',
         {
-            'type': 'notify_applicant',
-            'status': f'{instance.status}',
+            'type': 'send_notification',
+            'status': instance.status,
         }
     )
