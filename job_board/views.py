@@ -22,7 +22,6 @@ class JobPostViewSet(mixins.ActionPermissionMixin, ModelViewSet):
 
     @action(detail=True, methods=['GET'], permission_classes=[permissions.IsEmployerAndOwner, ])
     def applicants(self, request, *args, **kwargs):
-        print(request.user)
         self.check_object_permissions(request, models.JobPost.objects.get(id=kwargs['pk']))
         job_post = self.job_post_service.get_job_post(data={'id': kwargs['pk']})
         applicants = job_post.applicants.all()
