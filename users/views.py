@@ -50,15 +50,10 @@ class UserViewSet(ViewSet):
         serializer.is_valid(raise_exception=True)
 
         tokens = self.user_services.create_token(data=serializer.data)
+        print(tokens)
 
-        return Response(tokens)
-
-    @swagger_auto_schema(request_body=serializers.VerifyUserSerializer)
-    def verify_token(self, request, *args, **kwargs):
-        serializer = serializers.VerifyUserSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-
-        tokens = self.user_services.verify_token(data=serializer.data)
+        if tokens is None:
+            return Response({"detail": 'Invalid username or password'}, status=status.HTTP_403_FORBIDDEN)
 
         return Response(tokens)
 

@@ -11,6 +11,41 @@ from templated_email import send_templated_mail
 from rest_framework_simplejwt import tokens
 
 
+class EmailSenderInterface(Protocol):
+    @staticmethod
+    def send_verify_letter(name: str, surname: str, email: str, code: str): ...
+
+    @staticmethod
+    def send_confirmation_letter(user: User): ...
+
+
+class EmailSender:
+    @staticmethod
+    def send_verify_letter(name: str, surname: str, email: str, code: str):
+        send_templated_mail(
+            template_name='verify',
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=[email],
+            context={
+                'code': code,
+                'name': name,
+                'surname': surname,
+            }
+        )
+
+    @staticmethod
+    def send_confirmation_letter(user: User):
+        send_templated_mail(
+            template_name='welcome',
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=[user.email],
+            context={
+                'name': user.first_name,
+                'surname': user.last_name,
+            }
+        )
+
+
 class UserServicesInterface(Protocol):
     def create_user(self, data: OrderedDict) -> str: ...
 
@@ -25,6 +60,7 @@ class UserServicesInterface(Protocol):
 
 class UserServicesV1:
     user_repos: repos.UserReposInterface = repos.UserReposV1()
+    email_sender: EmailSenderInterface = EmailSender()
 
     def get_user(self, data: OrderedDict) -> User:
         payload = tokens.AccessToken(data['access_token']).payload
@@ -47,7 +83,7 @@ class UserServicesV1:
                 'user_type': user_data['user_type']
             })
 
-            self._send_confirmation_letter_on_email(user=user)
+            self.email_sender.send_confirmation_letter(user=user)
             return user
         return None
 
@@ -55,7 +91,7 @@ class UserServicesV1:
         user = self.user_repos.get_user(data={'email': data['email']})
 
         if not user:
-            return {"detail": 'Invalid username or password'}
+            return None
 
         if check_password(password=data['password'], encoded=user.password):
             access = tokens.AccessToken.for_user(user)
@@ -65,8 +101,6 @@ class UserServicesV1:
                 'access': str(access),
                 'refresh': str(refresh),
             }
-        else:
-            return {"detail": 'Invalid username or password'}
 
     def verify_token(self, data: OrderedDict) -> dict:
         user_data = cache.get(data['session_id'])
@@ -86,34 +120,9 @@ class UserServicesV1:
         session_id = self._generate_session_id()
         cache.set(session_id, {**data, 'code': code}, timeout=300)
 
-        self._send_letter_on_email(name=data['first_name'], surname=data['last_name'], email=data['email'], code=code)
+        self.email_sender.send_verify_letter(name=data['first_name'], surname=data['last_name'], email=data['email'], code=code)
 
         return session_id
-
-    @staticmethod
-    def _send_letter_on_email(name: str, surname: str, email: str, code: str):
-        send_templated_mail(
-            template_name='verify',
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[email],
-            context={
-                'code': code,
-                'name': name,
-                'surname': surname,
-            }
-        )
-
-    @staticmethod
-    def _send_confirmation_letter_on_email(user: User):
-        send_templated_mail(
-            template_name='welcome',
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[user.email],
-            context={
-                'name': user.first_name,
-                'surname': user.last_name,
-            }
-        )
 
     @staticmethod
     def _generate_code() -> str:

@@ -11,13 +11,20 @@ from users.models import User
 
 
 class JobPostSerializer(serializers.ModelSerializer):
-    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
     # category = serializers.SlugRelatedField(slug_field='name', queryset=models.Category.objects.all())
     company_name = serializers.ReadOnlyField(source='user.company.name')
 
     class Meta:
         model = models.JobPost
-        fields = ('id', 'user', 'created_at', 'company_name', 'title', 'description', 'location', 'salary')
+        fields = ('id', 'created_at', 'company_name', 'title', 'description', 'location', 'salary')
+
+
+class JobPostCreateSerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+    class Meta:
+        model = models.JobPost
+        fields = ('user', 'title', 'description', 'location', 'salary')
 
 
 class ApplicantSerializer(serializers.ModelSerializer):

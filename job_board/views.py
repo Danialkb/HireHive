@@ -8,13 +8,18 @@ from . import services
 from utils import mixins
 
 
-class JobPostViewSet(mixins.ActionPermissionMixin, ModelViewSet):
+class JobPostViewSet(mixins.ActionPermissionMixin, mixins.ActionSerializerMixin, ModelViewSet):
     ACTION_PERMISSIONS = {
         'update': (permissions.IsEmployerAndOwner(), ),
         'destroy': (permissions.IsEmployerAndOwner(), )
     }
+    ACTION_SERIALIZERS = {
+        'create': serializers.JobPostCreateSerializer,
+        'update': serializers.JobPostCreateSerializer,
+        'partial_update': serializers.JobPostCreateSerializer,
+    }
     serializer_class = serializers.JobPostSerializer
-    queryset = models.JobPost.objects.all()
+    queryset = models.JobPost.objects.select_related('user__company').all()
     permission_classes = permissions.IsEmployerOrReadOnly,
     job_post_service: services.JobPostServiceInterface = services.JobPostServiceV1()
     filter_backends = [filters.SearchFilter]
